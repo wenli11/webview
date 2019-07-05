@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
@@ -31,6 +32,17 @@ public class MainActivity extends AppCompatActivity {
 
         webView = findViewById(R.id.webview);
 
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebViewClient(new CustomWebViewClient());
+    }
+
+    private void setWebViewDefaultSettings(WebView webView){
+        WebSettings settings = webView.getSettings();
+
+        //允许调用js，默认false
+        settings.setJavaScriptEnabled(true);
+
+        settings.setSupportZoom(true);
+        settings.setDisplayZoomControls(true);
+        settings.setBuiltInZoomControls(true);
     }
 }
