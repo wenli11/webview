@@ -31,5 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         webView = findViewById(R.id.webview);
 
+        webView.setWebViewClient(new WebViewClient());
     }
 }
