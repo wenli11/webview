@@ -20,6 +20,31 @@ ERR_NAME_NOT_RESOLVED
 
 解决方法：1、查看有没有网络，打开wifi或者流量
 
+ERR_UNKNOW_URL_SCHEME
+
+无法识别自定义的 scheme 协议，例如：alipays://，weixin://，baidumap://xxx；webview只能识别 http:// 或 https:// 开头的 url
+
+解决方法：
+如果对自定义的 scheme 协议进行处理：
+public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+    if(url.startsWith("baidumap://")){
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(intent);
+        return true;
+    }
+    return super.shouldOverrideUrlLoading(view, url);
+}
+如果不想对自定义的 scheme 协议进行处理：
+public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+    if(url.startsWith("http://") || url.startsWith("https://")){
+        view.loadUrl(url);
+        return true;
+    }
+    return super.shouldOverrideUrlLoading(view, url);
+}
+
 
 跳转浏览器，不是在本应用内打开网页
 

@@ -296,7 +296,7 @@ public class CustomWebSettings extends WebSettings {
 
     @Override
     public void setJavaScriptEnabled(boolean flag) {
-
+        setJavaScriptEnabled(true);
     }
 
     @Override
